@@ -69,8 +69,10 @@ public class ClienteController {
         clienteService.deletarCliente(id);
     }
 
+    }
 
 
 
 
-}
+
+

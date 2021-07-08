@@ -13,16 +13,17 @@ import java.time.LocalDate;
 @Builder
 public class ClienteRequest {
 
-
-
     private String nome;
 
     private String cpf;
 
-
     private Integer diaVencimento;
 
    private Integer diaCorte;
+
+   private String username;
+
+   private String password;
 
 
 }

@@ -1,5 +1,7 @@
-package com.ciceropinheiro.conductor.Spring.util;
+package com.ciceropinheiro.conductor.Spring.jwt;
 
+import com.ciceropinheiro.conductor.Spring.util.CustomUserDetailsService;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,10 +33,19 @@ public class JwtFilter extends OncePerRequestFilter {
         String token = null;
         String userName = null;
 
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer")) {
             token = authorizationHeader.substring(7);
-            userName = jwtUtil.extractUsername(token);
+            try {
+                userName = jwtUtil.extractUsername(token);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Não foi possível acessar o token!");
+            } catch (ExpiredJwtException e) {
+                System.out.println("Token expirado!");
+            }
+        } else {
+            logger.warn("Token não pode começar com uma String Bearer");
         }
+
 
         if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 

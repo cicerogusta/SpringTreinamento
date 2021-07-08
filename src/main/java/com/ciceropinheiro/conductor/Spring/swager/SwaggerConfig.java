@@ -1,4 +1,4 @@
-package com.ciceropinheiro.conductor.Spring.ui;
+package com.ciceropinheiro.conductor.Spring.swager;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

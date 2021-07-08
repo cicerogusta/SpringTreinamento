@@ -1,5 +1,6 @@
 package com.ciceropinheiro.conductor.Spring.util;
 
+import com.ciceropinheiro.conductor.Spring.jwt.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,7 +43,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers("/authenticate", "/swagger-ui/", "/webjars/**", "**/favicon.ico", "/swagger-resources", "/v2/api-docs", "/swagger*/**", "/swagger-ui.html")
+        http.csrf().disable().authorizeRequests().antMatchers("/api/authenticate", "/swagger-ui/", "/webjars/**",
+                "**/favicon.ico", "/swagger-resources",
+                "/v2/api-docs", "/swagger*/**", "/swagger-ui.html")
                 .permitAll().anyRequest().authenticated()
                 .and().exceptionHandling().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
