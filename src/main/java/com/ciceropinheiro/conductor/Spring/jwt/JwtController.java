@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/authenticate")
 @Api(tags = "Jwt")
 public class JwtController {
 
@@ -19,7 +19,7 @@ public class JwtController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @PostMapping("/authenticate")
+    @PostMapping()
     public String generateToken(@RequestBody JwtRequest authRequest) throws Exception {
         try {
             authenticationManager.authenticate(
