@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/authenticate")
-@Api(tags = "Jwt")
 public class JwtController {
 
     @Autowired
