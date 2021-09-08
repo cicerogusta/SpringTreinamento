@@ -1,6 +1,7 @@
 package com.ciceropinheiro.conductor.Spring.jwt;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,6 +20,9 @@ public class JwtController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @ApiOperation(
+            value = "authenticate",
+            notes = "authentica token")
     @PostMapping()
     public String generateToken(@RequestBody JwtRequest authRequest) throws Exception {
         try {
