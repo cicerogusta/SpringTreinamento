@@ -23,7 +23,7 @@ public class JwtController {
     @ApiOperation(
             value = "authenticate",
             notes = "authentica token")
-    @PostMapping()
+    @PostMapping
     public String generateToken(@RequestBody JwtRequest authRequest) throws Exception {
         try {
             authenticationManager.authenticate(
