@@ -19,8 +19,7 @@ public class ClienteRequest {
 
     private Integer diaVencimento;
 
-   private Integer diaCorte;
-
+    private Integer diaCorte;
 
 
 }

@@ -25,7 +25,9 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/vendas/").permitAll()
                 .antMatchers(HttpMethod.GET,"/vendas/*").permitAll()
                 .antMatchers(HttpMethod.GET,"/lancamentos/").permitAll()
-                .antMatchers(HttpMethod.GET,"/lancamentos/*").permitAll();
+                .antMatchers(HttpMethod.GET,"/lancamentos/*").permitAll()
+                .anyRequest().authenticated()
+                .and().formLogin();
     }
 
     //Recursos estáticos(JS, CSS, IMGS)
