@@ -26,8 +26,6 @@ public class Application {
 				.diaCorte(10)
 				.diaVencimento(14)
 				.nome("Cícero")
-				.username("cicerogusta")
-				.password("1234")
 				.build();
 		service.salvarCliente(cliente);
 	}
