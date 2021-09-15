@@ -28,7 +28,7 @@ public class Venda {
 
     private BigDecimal valor;
 
-    @JsonIgnoreProperties({"vendas"})
+    @JsonIgnoreProperties({"venda"})
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
