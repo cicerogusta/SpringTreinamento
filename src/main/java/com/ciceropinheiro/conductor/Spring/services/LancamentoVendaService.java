@@ -6,6 +6,7 @@ import com.ciceropinheiro.conductor.Spring.mapper.LancamentoMapper;
 import com.ciceropinheiro.conductor.Spring.model.LancamentoVenda;
 import com.ciceropinheiro.conductor.Spring.model.Venda;
 import com.ciceropinheiro.conductor.Spring.repository.LancamentoVendaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -17,15 +18,12 @@ import java.util.Optional;
 @Service
 public class LancamentoVendaService {
 
-    private final LancamentoMapper lancamentoMapper;
+    @Autowired
+    private  LancamentoMapper lancamentoMapper;
 
-    private final LancamentoVendaRepository lancamentoVendaRepository;
+    @Autowired
+    private  LancamentoVendaRepository lancamentoVendaRepository;
 
-    public LancamentoVendaService(LancamentoMapper lancamentoMapper, LancamentoVendaRepository lancamentoVendaRepository) {
-        this.lancamentoMapper = lancamentoMapper;
-        this.lancamentoVendaRepository = lancamentoVendaRepository;
-
-    }
 
     public LancamentoResponse salvarLancamentoVenda(LancamentoRequest lancamentoVenda) {
         return lancamentoMapper.entityForResponse(lancamentoVendaRepository.save(lancamentoMapper.requestForEntity(lancamentoVenda)));

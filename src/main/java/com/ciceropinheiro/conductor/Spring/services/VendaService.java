@@ -5,6 +5,7 @@ import com.ciceropinheiro.conductor.Spring.dto.response.VendaResponse;
 import com.ciceropinheiro.conductor.Spring.mapper.VendaMapeamento;
 import com.ciceropinheiro.conductor.Spring.model.Venda;
 import com.ciceropinheiro.conductor.Spring.repository.VendaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -15,14 +16,12 @@ import java.util.Optional;
 @Service
 public class VendaService {
 
-    private final VendaRepository vendaRepository;
+    @Autowired
+    private  VendaRepository vendaRepository;
 
-    private final VendaMapeamento mapper;
+    @Autowired
+    private  VendaMapeamento mapper;
 
-    public VendaService(VendaMapeamento mapper, VendaRepository vendaRepository) {
-        this.mapper = mapper;
-        this.vendaRepository = vendaRepository;
-    }
 
 
 
