@@ -21,9 +21,6 @@ public class ClienteRequest {
 
    private Integer diaCorte;
 
-   private String username;
-
-   private String password;
 
 
 }
