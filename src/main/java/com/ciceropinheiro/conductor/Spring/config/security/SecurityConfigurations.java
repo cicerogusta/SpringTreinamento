@@ -49,6 +49,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.GET,"/clientes/*").permitAll()
+                .antMatchers(HttpMethod.GET,"/swagger-ui/").permitAll()
                 .antMatchers(HttpMethod.GET,"/vendas/").permitAll()
                 .antMatchers(HttpMethod.GET,"/vendas/*").permitAll()
                 .antMatchers(HttpMethod.GET,"/lancamentos/").permitAll()
