@@ -2,6 +2,7 @@ package com.ciceropinheiro.conductor.Spring.resources;
 
 import com.ciceropinheiro.conductor.Spring.config.security.TokenService;
 import com.ciceropinheiro.conductor.Spring.dto.request.LoginRequest;
+import com.ciceropinheiro.conductor.Spring.dto.request.TokenRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.http.ResponseEntity;
@@ -26,13 +27,13 @@ public class AutenticacaoController {
     private TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity<?> autenticar(@RequestBody @Valid LoginRequest loginRequest) {
+    public ResponseEntity<TokenRequest> autenticar(@RequestBody @Valid LoginRequest loginRequest) {
         UsernamePasswordAuthenticationToken dadosLogin = loginRequest.converter();
 
         try {
             Authentication authentication = authManager.authenticate(dadosLogin);
             String token = tokenService.gerarToken(authentication);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok(new TokenRequest(token, "Bearer"));
 
         }catch (AuthenticationException e) {
 
