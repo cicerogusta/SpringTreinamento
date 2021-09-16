@@ -1,6 +1,10 @@
 package com.ciceropinheiro.conductor.Spring.filter;
 
 import com.ciceropinheiro.conductor.Spring.config.security.TokenService;
+import com.ciceropinheiro.conductor.Spring.model.Usuario;
+import com.ciceropinheiro.conductor.Spring.repository.UsuarioRepository;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -11,10 +15,13 @@ import java.io.IOException;
 
 
 public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
-    TokenService tokenService;
 
-    public AutenticacaoViaTokenFilter(TokenService tokenService) {
+    TokenService tokenService;
+    UsuarioRepository usuarioRepository;
+
+    public AutenticacaoViaTokenFilter(TokenService tokenService, UsuarioRepository usuarioRepository) {
         this.tokenService = tokenService;
+        this.usuarioRepository = usuarioRepository;
     }
 
     @Override
@@ -22,9 +29,19 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 
         String token = recuperarToken(httpServletRequest);
         boolean valido = tokenService.isTokenValido(token);
+        if (valido) {
+            autenticarCliente(token);
+        }
 
 
         filterChain.doFilter(httpServletRequest, httpServletResponse);
+    }
+
+    private void autenticarCliente(String token) {
+        Long idUsuario = tokenService.getIdUsuario(token);
+        Usuario usuario = usuarioRepository.findById(idUsuario).get();
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
     }
 
     private String recuperarToken(HttpServletRequest httpServletRequest) {
