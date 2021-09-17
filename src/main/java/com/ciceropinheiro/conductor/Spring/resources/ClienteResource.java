@@ -14,15 +14,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/clientes")
-@Api(tags = "Clientes")
+//@Api(tags = "Clientes")
 public class ClienteResource {
 
     @Autowired
     private  ClienteService clienteService;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
-    @ApiOperation(value = "Cadastra um cliente", notes = "Requer dados do cliente")
+//    @PostMapping
+//    @ApiOperation(value = "Cadastra um cliente", notes = "Requer dados do cliente")
     public ClienteResponse salvarCliente(@RequestBody ClienteRequest cliente) {
         return clienteService.salvarCliente(cliente);
     }
@@ -30,9 +30,9 @@ public class ClienteResource {
 
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PutMapping(value = "/{id}")
-    @ApiOperation(
-            value = "Atualiza dados cliente",
-            notes = "Requer id do cliente")
+//    @ApiOperation(
+//            value = "Atualiza dados cliente",
+//            notes = "Requer id do cliente")
     public ClienteResponse atualizarCliente(@PathVariable Long id, @RequestBody ClienteRequest clienteAtualizado) {
         return clienteService.editarCliente(id, clienteAtualizado);
     }
@@ -40,9 +40,9 @@ public class ClienteResource {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/{id}")
-    @ApiOperation(
-            value = "Recupera um cliente por id",
-            notes = "Requer id do cliente")
+//    @ApiOperation(
+//            value = "Recupera um cliente por id",
+//            notes = "Requer id do cliente")
     public Cliente recuperarClienteById(@PathVariable Long id) {
         return clienteService.recuperarClienteById(id);
     }
@@ -50,9 +50,9 @@ public class ClienteResource {
 
     @ResponseStatus(HttpStatus.ACCEPTED)
     @DeleteMapping(value = "/{id}")
-    @ApiOperation(
-            value = "Deleta um cliente",
-            notes = "Requer id do cliente")
+//    @ApiOperation(
+//            value = "Deleta um cliente",
+//            notes = "Requer id do cliente")
     public void deletarCliente(@PathVariable Long id) {
         clienteService.deletarCliente(id);
     }
