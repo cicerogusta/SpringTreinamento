@@ -19,7 +19,7 @@ public class SwaggerConfigurations {
 	public Docket forumApi() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("br.com.alura.forum"))
+				.apis(RequestHandlerSelectors.basePackage("com.ciceropinheiro.conductor.Spring"))
 				.paths(PathSelectors.ant("/**"))
 				.build()
 				.ignoredParameterTypes(Usuario.class)
