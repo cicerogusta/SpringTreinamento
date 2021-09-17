@@ -14,23 +14,10 @@ import java.util.Collections;
 
 @SpringBootApplication
 public class Application {
-	@Autowired
-	private ClienteService service;
 
-	@PostConstruct
-	public void initUsers() {
-		ClienteRequest cliente = ClienteRequest
-				.builder()
-				.cpf("4646544")
-				.diaCorte(10)
-				.diaVencimento(14)
-				.nome("Cícero")
-				.build();
-		service.salvarCliente(cliente);
-	}
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 
 }

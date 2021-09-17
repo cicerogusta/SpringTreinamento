@@ -1,7 +1,5 @@
 package com.ciceropinheiro.conductor.Spring.mapper;
 
-import org.mapstruct.Mapper;
-
 //T = Class
 // U = Request
 // V = Response

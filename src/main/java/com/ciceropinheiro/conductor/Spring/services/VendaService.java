@@ -17,30 +17,25 @@ import java.util.Optional;
 public class VendaService {
 
     @Autowired
-    private  VendaRepository vendaRepository;
+    private VendaRepository vendaRepository;
 
     @Autowired
-    private  VendaMapeamento mapper;
+    private VendaMapeamento mapper;
 
 
-
-
-
-    public VendaResponse salvarVendas(VendaRequest venda){
-        return mapper.entityForResponse(vendaRepository.save(mapper.requestForEntity(venda)));
-    }
-    public List<Venda> recuperarVendas(){
+    public List<Venda> recuperarVendas() {
         return vendaRepository.findAll();
     }
-    public Venda recuperarVendasById(Long id){
+
+    public Venda recuperarVendasById(Long id) {
         Optional<Venda> cliente = vendaRepository.findById(id);
         return cliente.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Objeto não encontrado"));
 
     }
 
-    public VendaResponse editarVenda(long id,VendaRequest venda) {
+    public VendaResponse editarVenda(long id, VendaRequest venda) {
         Venda entidade = vendaRepository.getOne(id);
-        updateData(entidade,mapper.requestForEntity(venda));
+        updateData(entidade, mapper.requestForEntity(venda));
         return mapper.entityForResponse(vendaRepository.save(entidade));
     }
 
@@ -50,7 +45,7 @@ public class VendaService {
         entidade.setValor(venda.getValor());
     }
 
-    public void deletarCliente(Long id) {
+    public void deletarVenda(Long id) {
         vendaRepository.deleteById(id);
     }
 

@@ -1,9 +1,9 @@
 package com.ciceropinheiro.conductor.Spring.resources;
 
-import com.ciceropinheiro.conductor.Spring.config.security.TokenService;
+
 import com.ciceropinheiro.conductor.Spring.dto.request.LoginRequest;
 import com.ciceropinheiro.conductor.Spring.dto.request.TokenRequest;
-import io.swagger.annotations.Api;
+import com.ciceropinheiro.conductor.Spring.config.security.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,7 +31,6 @@ public class AutenticacaoController {
     }
 
     @PostMapping
-
     public ResponseEntity<TokenRequest> autenticar(@RequestBody @Valid LoginRequest loginRequest) {
         UsernamePasswordAuthenticationToken dadosLogin = loginRequest.converter();
 

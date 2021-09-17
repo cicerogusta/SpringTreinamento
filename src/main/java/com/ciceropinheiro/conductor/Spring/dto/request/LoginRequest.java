@@ -1,6 +1,5 @@
 package com.ciceropinheiro.conductor.Spring.dto.request;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

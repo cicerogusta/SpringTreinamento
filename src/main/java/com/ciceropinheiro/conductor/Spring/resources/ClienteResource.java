@@ -4,13 +4,9 @@ import com.ciceropinheiro.conductor.Spring.dto.request.ClienteRequest;
 import com.ciceropinheiro.conductor.Spring.dto.response.ClienteResponse;
 import com.ciceropinheiro.conductor.Spring.model.Cliente;
 import com.ciceropinheiro.conductor.Spring.services.ClienteService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/clientes")
@@ -19,13 +15,6 @@ public class ClienteResource {
 
     @Autowired
     private  ClienteService clienteService;
-
-    @ResponseStatus(HttpStatus.CREATED)
-//    @PostMapping
-//    @ApiOperation(value = "Cadastra um cliente", notes = "Requer dados do cliente")
-    public ClienteResponse salvarCliente(@RequestBody ClienteRequest cliente) {
-        return clienteService.salvarCliente(cliente);
-    }
 
 
     @ResponseStatus(HttpStatus.ACCEPTED)

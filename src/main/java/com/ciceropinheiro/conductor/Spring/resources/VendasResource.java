@@ -22,15 +22,6 @@ public class VendasResource {
     }
 
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
-    @ApiOperation(
-            value = "Cadastra uma venda",
-            notes = "Requer dados da venda")
-    private VendaResponse salvarVenda(@RequestBody VendaRequest venda) {
-        return vendaService.salvarVendas(venda);
-    }
-
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PutMapping(value = "/{id}")
     @ApiOperation(
@@ -63,7 +54,7 @@ public class VendasResource {
             value = "Deleta uma vemda",
             notes = "Requer id da venda")
     public void deletarVenda(@PathVariable Long id) {
-        vendaService.deletarCliente(id);
+        vendaService.deletarVenda(id);
     }
 
 }

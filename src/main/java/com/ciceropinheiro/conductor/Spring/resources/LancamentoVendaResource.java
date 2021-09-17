@@ -20,16 +20,6 @@ public class LancamentoVendaResource {
     @Autowired
     private LancamentoVendaService lancamentoVendaService;
 
-
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
-    @ApiOperation(
-            value = "Cadastra um lancamento",
-            notes = "Requer dados do lancamento")
-    private LancamentoResponse salvarVenda(@RequestBody LancamentoRequest lancamentoVenda) {
-        return lancamentoVendaService.salvarLancamentoVenda(lancamentoVenda);
-    }
-
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PutMapping(value = "/{id}")
     @ApiOperation(

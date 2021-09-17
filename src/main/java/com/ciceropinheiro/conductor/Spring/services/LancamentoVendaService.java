@@ -19,26 +19,21 @@ import java.util.Optional;
 public class LancamentoVendaService {
 
     @Autowired
-    private  LancamentoMapper lancamentoMapper;
+    private LancamentoMapper lancamentoMapper;
 
     @Autowired
-    private  LancamentoVendaRepository lancamentoVendaRepository;
+    private LancamentoVendaRepository lancamentoVendaRepository;
 
 
-    public LancamentoResponse salvarLancamentoVenda(LancamentoRequest lancamentoVenda) {
-        return lancamentoMapper.entityForResponse(lancamentoVendaRepository.save(lancamentoMapper.requestForEntity(lancamentoVenda)));
-    }
-
-    public void gerarLancamentos(Venda venda){
+    public void gerarLancamentos(Venda venda) {
         Integer diaCorte = venda.getCliente().getDiaCorte();
         Integer diaVencimento = venda.getCliente().getDiaVencimento();
         LocalDate atual = LocalDate.now();
         LocalDate dataVencimento = atual.withDayOfMonth(diaVencimento);
-        if(diaCorte < atual.getDayOfMonth()) {
+        if (diaCorte < atual.getDayOfMonth()) {
             if (diaVencimento > diaCorte) {
                 dataVencimento = dataVencimento.plusMonths(1L);
-            }
-            else {
+            } else {
                 dataVencimento = dataVencimento.plusMonths(2L);
             }
         } else {
@@ -84,7 +79,6 @@ public class LancamentoVendaService {
     public void deletarLancamento(Long id) {
         lancamentoVendaRepository.deleteById(id);
     }
-
 
 
 }

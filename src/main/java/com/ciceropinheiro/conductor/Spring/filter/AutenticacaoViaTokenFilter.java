@@ -1,8 +1,8 @@
 package com.ciceropinheiro.conductor.Spring.filter;
 
-import com.ciceropinheiro.conductor.Spring.config.security.TokenService;
 import com.ciceropinheiro.conductor.Spring.model.Usuario;
 import com.ciceropinheiro.conductor.Spring.repository.UsuarioRepository;
+import com.ciceropinheiro.conductor.Spring.config.security.TokenService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
