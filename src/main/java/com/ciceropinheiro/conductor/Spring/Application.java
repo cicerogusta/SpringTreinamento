@@ -1,18 +1,15 @@
 package com.ciceropinheiro.conductor.Spring;
 
-import com.ciceropinheiro.conductor.Spring.dto.request.ClienteRequest;
-import com.ciceropinheiro.conductor.Spring.model.Perfil;
-import com.ciceropinheiro.conductor.Spring.model.Usuario;
-import com.ciceropinheiro.conductor.Spring.services.ClienteService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import javax.annotation.PostConstruct;
-import java.util.Arrays;
-import java.util.Collections;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
+@EnableSpringDataWebSupport
+@EnableCaching
+@EnableSwagger2
 public class Application {
 
 
