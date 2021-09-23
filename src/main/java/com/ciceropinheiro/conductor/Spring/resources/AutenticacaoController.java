@@ -5,6 +5,7 @@ import com.ciceropinheiro.conductor.Spring.dto.request.ClienteRequest;
 import com.ciceropinheiro.conductor.Spring.dto.request.LoginRequest;
 import com.ciceropinheiro.conductor.Spring.dto.request.TokenRequest;
 import com.ciceropinheiro.conductor.Spring.config.security.TokenService;
+import com.ciceropinheiro.conductor.Spring.model.Cliente;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -50,10 +51,10 @@ public class AutenticacaoController {
     }
 
     @PostMapping("/gerarToken")
-    public ResponseEntity<String> gerarToken(@RequestBody @Validated ClienteRequest clienteRequest) {
+    public ResponseEntity<String> gerarToken(@RequestBody @Validated Cliente cliente) {
 
         try {
-            String token = tokenService.gerarTokenDados(clienteRequest.getNome());
+            String token = tokenService.gerarTokenDados(cliente.getId().toString());
             return ResponseEntity.ok(token);
 
         }catch (AuthenticationException e) {

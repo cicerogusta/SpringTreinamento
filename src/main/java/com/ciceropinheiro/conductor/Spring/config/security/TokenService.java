@@ -1,6 +1,5 @@
 package com.ciceropinheiro.conductor.Spring.config.security;
 
-import com.ciceropinheiro.conductor.Spring.dto.request.ClienteRequest;
 import com.ciceropinheiro.conductor.Spring.model.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
