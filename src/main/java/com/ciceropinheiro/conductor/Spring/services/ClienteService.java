@@ -34,14 +34,14 @@ public class ClienteService {
 //        return clienteRepository.findAll().stream().filter(cliente -> cliente.getNome().equals(nome)).collect(Collectors.toList());
 //    }
 
-    public Cliente recuperarClienteById(Long id) {
-        Optional<Cliente> cliente = clienteRepository.findById(id);
+    public Cliente recuperarClienteById(String nomeCliente) {
+        Optional<Cliente> cliente = Optional.ofNullable(clienteRepository.findByNome(nomeCliente));
         return cliente.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Objeto não encontrado"));
 
     }
 
-    public ClienteResponse editarCliente(long id, ClienteRequest cliente) {
-        Cliente entidade = clienteRepository.getOne(id);
+    public ClienteResponse editarCliente(String nomeCliente, ClienteRequest cliente) {
+        Cliente entidade = clienteRepository.findByNome(nomeCliente);
         updateData(entidade, mapper.requestForEntity(cliente));
         return mapper.entityForResponse(clienteRepository.save(entidade));
     }

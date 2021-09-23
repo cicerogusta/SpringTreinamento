@@ -1,9 +1,11 @@
 package com.ciceropinheiro.conductor.Spring.resources;
 
 
+import com.ciceropinheiro.conductor.Spring.dto.request.ClienteRequest;
 import com.ciceropinheiro.conductor.Spring.dto.request.LoginRequest;
 import com.ciceropinheiro.conductor.Spring.dto.request.TokenRequest;
 import com.ciceropinheiro.conductor.Spring.config.security.TokenService;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,10 +13,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 
 @RestController
@@ -46,4 +48,29 @@ public class AutenticacaoController {
         }
 
     }
+
+    @PostMapping("/gerarToken")
+    public ResponseEntity<String> gerarToken(@RequestBody @Validated ClienteRequest clienteRequest) {
+
+        try {
+            String token = tokenService.gerarTokenDados(clienteRequest.getNome());
+            return ResponseEntity.ok(token);
+
+        }catch (AuthenticationException e) {
+
+            return ResponseEntity.badRequest().build();
+
+        }
+
+    }
+
+
+
+//    @GetMapping(value = "/decodificar")
+//    public ResponseEntity<String> decodificarToken(@RequestBody String token) {
+//        String payload = token.split("//.")[1];
+//        String decodificador = Base64.decodeBase64(payload,  StandardCharsets.UTF_8)
+//        return ResponseEntity.ok(decodificador);
+//
+//    }
 }

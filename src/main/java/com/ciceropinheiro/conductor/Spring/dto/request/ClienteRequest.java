@@ -13,8 +13,6 @@ public class ClienteRequest {
 
     private String nome;
 
-    private String cpf;
-
     private Integer diaVencimento;
 
     private Integer diaCorte;

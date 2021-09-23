@@ -1,5 +1,6 @@
 package com.ciceropinheiro.conductor.Spring.config.security;
 
+import com.ciceropinheiro.conductor.Spring.dto.request.ClienteRequest;
 import com.ciceropinheiro.conductor.Spring.model.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -25,11 +26,18 @@ public class TokenService {
 		Date dataExpiracao = new Date(hoje.getTime() + Long.parseLong(expiration));
 		
 		return Jwts.builder()
-				.setIssuer("API do Fórum da Alura")
+				.setIssuer("API de Vendas")
 				.setSubject(logado.getId().toString())
 				.setIssuedAt(hoje)
 				.setExpiration(dataExpiracao)
 				.signWith(SignatureAlgorithm.HS256, secret)
+				.compact();
+	}
+
+	public String gerarTokenDados(String token) {
+
+		return Jwts.builder()
+				.setSubject(token)
 				.compact();
 	}
 	
