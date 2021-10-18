@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 	
@@ -32,7 +33,7 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 		if (valido) {
 			autenticarCliente(token);
 		}
-		
+
 		filterChain.doFilter(request, response);
 	}
 
@@ -41,14 +42,14 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 		Usuario usuario = repository.findById(idUsuario).get();
 		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-	}
+		}
 
 	private String recuperarToken(HttpServletRequest request) {
 		String token = request.getHeader("Authorization");
-		if (token == null || token.isEmpty() || !token.startsWith("Bearer ")) {
+		if (token == null) {
 			return null;
 		}
-		
+
 		return token.substring(7, token.length());
 	}
 

@@ -4,16 +4,18 @@ import com.ciceropinheiro.conductor.Spring.dto.request.ClienteRequest;
 import com.ciceropinheiro.conductor.Spring.dto.response.ClienteResponse;
 import com.ciceropinheiro.conductor.Spring.model.Cliente;
 import com.ciceropinheiro.conductor.Spring.services.ClienteService;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/clientes")
+@RequestMapping("/api/cliente")
 //@Api(tags = "Clientes")
 public class ClienteResource {
 
@@ -21,38 +23,39 @@ public class ClienteResource {
     private ClienteService clienteService;
 
 
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    @PutMapping(value = "/{nomeCliente}")
+//    @ResponseStatus(HttpStatus.ACCEPTED)
+//    @PutMapping(value = "/{id}")
 //    @ApiOperation(
 //            value = "Atualiza dados cliente",
 //            notes = "Requer id do cliente")
-    public ClienteResponse atualizarCliente(@PathVariable String nomeCliente, @RequestBody ClienteRequest clienteAtualizado) {
-        return clienteService.editarCliente(nomeCliente, clienteAtualizado);
+//    public ClienteResponse atualizarCliente(@PathVariable Long id, @RequestBody ClienteRequest clienteAtualizado) {
+//        return clienteService.editarCliente(id, clienteAtualizado);
+//    }
+//
+    @GetMapping(value = "/{id}")
+    public Cliente buscaClientePorId(@PathVariable Long id) {
+        return clienteService.recuperarClientePorId(id);
+
     }
 
 
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/{nomeCliente}")
-//    @ApiOperation(
-//            value = "Recupera um cliente por id",
-//            notes = "Requer id do cliente")
-    public Cliente recuperarClienteById(@PathVariable String nomeCliente) {
-        return clienteService.recuperarClienteById(nomeCliente);
-    }
 
 
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    @DeleteMapping(value = "/{id}")
-//    @ApiOperation(
-//            value = "Deleta um cliente",
-//            notes = "Requer id do cliente")
-    public void deletarCliente(@PathVariable Long id) {
-        clienteService.deletarCliente(id);
-    }
 
+
+
+//    @ResponseStatus(HttpStatus.ACCEPTED)
+//    @DeleteMapping(value = "/{id}")
+////    @ApiOperation(
+////            value = "Deleta um cliente",
+////            notes = "Requer id do cliente")
+//    public void deletarCliente(@PathVariable Long id) {
+//        clienteService.deletarCliente(id);
+//    }
 
 
 }
+
 
 
 

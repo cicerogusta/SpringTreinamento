@@ -17,5 +17,4 @@ public class VendaRequest {
 
     private BigDecimal valor;
 
-    private Long idCliente;
 }

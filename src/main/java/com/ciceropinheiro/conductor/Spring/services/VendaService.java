@@ -1,6 +1,8 @@
 package com.ciceropinheiro.conductor.Spring.services;
 
+import com.ciceropinheiro.conductor.Spring.dto.request.ClienteRequest;
 import com.ciceropinheiro.conductor.Spring.dto.request.VendaRequest;
+import com.ciceropinheiro.conductor.Spring.dto.response.ClienteResponse;
 import com.ciceropinheiro.conductor.Spring.dto.response.VendaResponse;
 import com.ciceropinheiro.conductor.Spring.mapper.VendaMapeamento;
 import com.ciceropinheiro.conductor.Spring.model.Venda;
@@ -22,6 +24,10 @@ public class VendaService {
     @Autowired
     private VendaMapeamento mapper;
 
+    public VendaResponse salvarVenda(VendaRequest venda) {
+
+        return mapper.entityForResponse(vendaRepository.save(mapper.requestForEntity(venda)));
+    }
 
     public List<Venda> recuperarVendas() {
         return vendaRepository.findAll();

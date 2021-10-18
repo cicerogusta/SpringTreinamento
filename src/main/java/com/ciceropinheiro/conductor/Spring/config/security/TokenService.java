@@ -1,5 +1,6 @@
 package com.ciceropinheiro.conductor.Spring.config.security;
 
+import com.ciceropinheiro.conductor.Spring.dto.request.ClienteRequest;
 import com.ciceropinheiro.conductor.Spring.model.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.Date;
 
 @Service
@@ -21,22 +24,10 @@ public class TokenService {
 
 	public String gerarToken(Authentication authentication) {
 		Usuario logado = (Usuario) authentication.getPrincipal();
-		Date hoje = new Date();
-		Date dataExpiracao = new Date(hoje.getTime() + Long.parseLong(expiration));
-		
+
 		return Jwts.builder()
-				.setIssuer("API de Vendas")
 				.setSubject(logado.getId().toString())
-				.setIssuedAt(hoje)
-				.setExpiration(dataExpiracao)
 				.signWith(SignatureAlgorithm.HS256, secret)
-				.compact();
-	}
-
-	public String gerarTokenDados(String token) {
-
-		return Jwts.builder()
-				.setSubject(token)
 				.compact();
 	}
 	

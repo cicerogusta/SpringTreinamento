@@ -25,6 +25,8 @@ public class Cliente {
     @Column(name = "nome")
     private String nome;
 
+    private String email;
+
     @Column(name = "cpf")
     private String cpf;
 
@@ -38,6 +40,11 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Venda> vendas;
 
+    private String token;
 
+
+    public Cliente(String token) {
+        this.token = token;
+    }
 }
 

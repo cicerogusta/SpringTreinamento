@@ -1,6 +1,5 @@
 package com.ciceropinheiro.conductor.Spring.config.swagger;
 
-import com.ciceropinheiro.conductor.Spring.model.Usuario;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ParameterBuilder;
@@ -21,9 +20,7 @@ public class SwaggerConfigurations {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.ciceropinheiro.conductor.Spring"))
                 .paths(PathSelectors.ant("/**"))
-                .build()
-                .ignoredParameterTypes(Usuario.class)
-                .globalOperationParameters(Arrays.asList(
+                .build().globalOperationParameters(Arrays.asList(
                         new ParameterBuilder()
                                 .name("Authorization")
                                 .description("Header para token JWT")
