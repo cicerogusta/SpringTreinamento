@@ -38,7 +38,7 @@ public class LancamentoVenda  {
 
     @JsonIgnoreProperties({"lancamentoVendaList"})
     @ManyToOne
-    @JoinColumn(name = "venda_id")
+    @JoinColumn(name = "vendaList")
     private Venda venda;
 
 }

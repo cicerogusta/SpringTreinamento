@@ -9,10 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.Base64;
-import java.util.Date;
-
 @Service
 public class TokenService {
 	
@@ -30,6 +26,14 @@ public class TokenService {
 				.signWith(SignatureAlgorithm.HS256, secret)
 				.compact();
 	}
+
+	public String gerarTokenCliente(ClienteRequest clienteRequest) {
+
+		return Jwts.builder()
+				.setSubject(clienteRequest.getEmail())
+				.signWith(SignatureAlgorithm.HS256, secret)
+				.compact();
+    }
 	
 	public boolean isTokenValido(String token) {
 		try {

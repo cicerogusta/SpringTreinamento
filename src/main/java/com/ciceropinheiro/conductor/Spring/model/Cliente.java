@@ -1,5 +1,6 @@
 package com.ciceropinheiro.conductor.Spring.model;
 
+import com.ciceropinheiro.conductor.Spring.dto.request.ClienteRequest;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,15 +37,13 @@ public class Cliente {
     @Column(name = "dia_corte")
     private Integer diaCorte;
 
-    @JsonIgnoreProperties({"cliente"})
-    @OneToMany(mappedBy = "cliente")
-    private List<Venda> vendas;
+//    @JsonIgnoreProperties({"cliente"})
+//    @Column(name = "vendas")
+//    @OneToMany(mappedBy = "cliente")
+//    private List<Venda> vendas;
 
     private String token;
 
 
-    public Cliente(String token) {
-        this.token = token;
-    }
 }
 

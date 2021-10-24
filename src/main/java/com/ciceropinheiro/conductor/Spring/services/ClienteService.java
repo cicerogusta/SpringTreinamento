@@ -1,9 +1,11 @@
 package com.ciceropinheiro.conductor.Spring.services;
 
+import com.ciceropinheiro.conductor.Spring.config.security.TokenService;
 import com.ciceropinheiro.conductor.Spring.dto.request.ClienteRequest;
 import com.ciceropinheiro.conductor.Spring.dto.response.ClienteResponse;
 import com.ciceropinheiro.conductor.Spring.mapper.ClienteMapper;
 import com.ciceropinheiro.conductor.Spring.model.Cliente;
+import com.ciceropinheiro.conductor.Spring.model.Venda;
 import com.ciceropinheiro.conductor.Spring.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,22 +23,29 @@ public class ClienteService {
     @Autowired
     private ClienteMapper mapper;
 
+    @Autowired
+    TokenService tokenService;
+
 
     @Autowired
     private ClienteRepository clienteRepository;
 
 
-    public ClienteResponse salvarCliente(ClienteRequest cliente) {
+    public ClienteResponse salvarCliente(ClienteRequest clienteRequest) {
 
-        return mapper.entityForResponse(clienteRepository.save(mapper.requestForEntity(cliente)));
+        String token = tokenService.gerarTokenCliente(clienteRequest);
+        Cliente cliente = mapper.requestForEntity(clienteRequest);
+        cliente.setToken(token);
+        return mapper.entityForResponse(clienteRepository.save(cliente));
     }
 
-    public Cliente recuperarClientePorId(Long id){
+    public Cliente recuperarClientePorId(Long id) {
         Optional<Cliente> cliente = clienteRepository.findById(id);
-        return  cliente.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Objeto não encontrado"));
+        return cliente.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Objeto não encontrado"));
 
 
     }
+
 
 
 //    public Cliente recuperarClientePorId(Long id) {

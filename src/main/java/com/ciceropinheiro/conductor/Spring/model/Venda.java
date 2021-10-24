@@ -29,12 +29,12 @@ public class Venda {
 
     private BigDecimal valor;
 
-    @JsonIgnoreProperties({"venda"})
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
-    @JsonIgnoreProperties({"venda"})
-    @OneToMany(mappedBy = "venda")
-    private List<LancamentoVenda> lancamentoVendaList;
+//    @JsonIgnoreProperties({"venda"})
+//    @ManyToOne
+//    @JoinColumn(name = "cliente_id")
+//    private Cliente cliente;
+//    @JsonIgnoreProperties({"venda"})
+//    @OneToMany(mappedBy = "venda")
+//    private List<LancamentoVenda> lancamentoVendaList;
 
 }
