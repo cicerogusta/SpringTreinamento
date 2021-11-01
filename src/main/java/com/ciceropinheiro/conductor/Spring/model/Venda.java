@@ -1,6 +1,7 @@
 package com.ciceropinheiro.conductor.Spring.model;
 
 import com.ciceropinheiro.conductor.Spring.dto.request.VendaRequest;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,10 +30,10 @@ public class Venda {
 
     private BigDecimal valor;
 
-//    @JsonIgnoreProperties({"venda"})
-//    @ManyToOne
-//    @JoinColumn(name = "cliente_id")
-//    private Cliente cliente;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 //    @JsonIgnoreProperties({"venda"})
 //    @OneToMany(mappedBy = "venda")
 //    private List<LancamentoVenda> lancamentoVendaList;

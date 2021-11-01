@@ -14,6 +14,7 @@ import java.util.List;
 @Builder
 public class ClienteResponse {
 
+    private Long id;
     private String nome;
     private String email;
     private Integer diaVencimento;

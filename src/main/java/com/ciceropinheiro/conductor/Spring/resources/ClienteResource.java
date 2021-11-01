@@ -34,8 +34,8 @@ public class ClienteResource {
 //    }
 //
     @GetMapping(value = "/{id}")
-    public Cliente buscaClientePorId(@PathVariable Long id) {
-        return clienteService.recuperarClientePorId(id);
+    public Cliente buscaClientePorEmail(@PathVariable String email) {
+        return clienteService.recuperarClientePorEmail(email);
 
     }
 

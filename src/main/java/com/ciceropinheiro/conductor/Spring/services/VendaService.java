@@ -1,9 +1,11 @@
 package com.ciceropinheiro.conductor.Spring.services;
 
+import com.ciceropinheiro.conductor.Spring.config.security.SecurityUtil;
 import com.ciceropinheiro.conductor.Spring.dto.request.VendaRequest;
 import com.ciceropinheiro.conductor.Spring.dto.response.VendaResponse;
 import com.ciceropinheiro.conductor.Spring.mapper.VendaMapeamento;
 import com.ciceropinheiro.conductor.Spring.model.Cliente;
+import com.ciceropinheiro.conductor.Spring.model.Usuario;
 import com.ciceropinheiro.conductor.Spring.model.Venda;
 import com.ciceropinheiro.conductor.Spring.repository.VendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +28,18 @@ public class VendaService {
     private VendaMapeamento mapper;
 
 
-
     public VendaResponse salvarVenda(VendaRequest vendaRequest) {
         return mapper.entityForResponse(vendaRepository.save(mapper.requestForEntity(vendaRequest)));
     }
 
 
     public List<Venda> recuperarVendas() {
-        return vendaRepository.findAll();
+        Usuario usuario = SecurityUtil.getUsuario();
+
+        if (usuario == null)
+            return vendaRepository.findAll();
+
+        return vendaRepository.findByCliente(usuario.getCliente());
     }
 
     public List<Venda> recuperarVendasByIdCliente(Long id) {

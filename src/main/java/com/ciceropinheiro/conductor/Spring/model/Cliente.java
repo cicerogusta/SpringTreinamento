@@ -3,6 +3,7 @@ package com.ciceropinheiro.conductor.Spring.model;
 import com.ciceropinheiro.conductor.Spring.dto.request.ClienteRequest;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Data
 @Table(name = "tb_cliente")
 
@@ -42,7 +44,9 @@ public class Cliente {
 //    @OneToMany(mappedBy = "cliente")
 //    private List<Venda> vendas;
 
-    private String token;
+    @OneToOne(mappedBy = "cliente")
+    private Usuario usuario;
+
 
 
 }

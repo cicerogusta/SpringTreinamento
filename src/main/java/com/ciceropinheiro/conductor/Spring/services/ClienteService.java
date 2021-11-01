@@ -5,6 +5,7 @@ import com.ciceropinheiro.conductor.Spring.dto.request.ClienteRequest;
 import com.ciceropinheiro.conductor.Spring.dto.response.ClienteResponse;
 import com.ciceropinheiro.conductor.Spring.mapper.ClienteMapper;
 import com.ciceropinheiro.conductor.Spring.model.Cliente;
+import com.ciceropinheiro.conductor.Spring.model.Usuario;
 import com.ciceropinheiro.conductor.Spring.model.Venda;
 import com.ciceropinheiro.conductor.Spring.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,15 +36,24 @@ public class ClienteService {
 
         String token = tokenService.gerarTokenCliente(clienteRequest);
         Cliente cliente = mapper.requestForEntity(clienteRequest);
-        cliente.setToken(token);
+//        cliente.setToken(token);
         return mapper.entityForResponse(clienteRepository.save(cliente));
     }
 
-    public Cliente recuperarClientePorId(Long id) {
-        Optional<Cliente> cliente = clienteRepository.findById(id);
-        return cliente.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Objeto não encontrado"));
+    public void salvarCliente(Cliente cliente) {
+         clienteRepository.save(cliente);
+    }
 
+//    public Cliente recuperarClientePorId(Long id) {
+//        Optional<Cliente> cliente = clienteRepository.findById(id);
+//        return cliente.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Objeto não encontrado"));
+//
+//
+//    }
 
+    public Cliente recuperarClientePorEmail(String email) {
+        Optional<Cliente> cliente = Optional.ofNullable(clienteRepository.findByEmail(email));
+        return cliente.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario não encontrado" ));
     }
 
 

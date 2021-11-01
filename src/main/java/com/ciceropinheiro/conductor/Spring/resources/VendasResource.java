@@ -37,9 +37,17 @@ public class VendasResource {
     }
 
     @GetMapping(value = "/{id}")
-    private List<Venda> retornaVendaClienteByClienteId(@PathVariable Long id) {
+    public List<Venda> retornaVendaClienteByClienteId(@PathVariable Long id) {
         return vendaService.recuperarVendasByIdCliente(id);
+
     }
+
+    @GetMapping
+    public List<Venda> retornaVenda() {
+        return vendaService.recuperarVendas();
+
+    }
+
 
 
 //    @ResponseStatus(HttpStatus.ACCEPTED)
