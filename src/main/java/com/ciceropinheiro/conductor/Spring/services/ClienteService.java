@@ -1,12 +1,9 @@
 package com.ciceropinheiro.conductor.Spring.services;
 
-import com.ciceropinheiro.conductor.Spring.config.security.TokenService;
 import com.ciceropinheiro.conductor.Spring.dto.request.ClienteRequest;
 import com.ciceropinheiro.conductor.Spring.dto.response.ClienteResponse;
 import com.ciceropinheiro.conductor.Spring.mapper.ClienteMapper;
 import com.ciceropinheiro.conductor.Spring.model.Cliente;
-import com.ciceropinheiro.conductor.Spring.model.Usuario;
-import com.ciceropinheiro.conductor.Spring.model.Venda;
 import com.ciceropinheiro.conductor.Spring.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,9 +21,6 @@ public class ClienteService {
     @Autowired
     private ClienteMapper mapper;
 
-    @Autowired
-    TokenService tokenService;
-
 
     @Autowired
     private ClienteRepository clienteRepository;
@@ -34,9 +28,7 @@ public class ClienteService {
 
     public ClienteResponse salvarCliente(ClienteRequest clienteRequest) {
 
-        String token = tokenService.gerarTokenCliente(clienteRequest);
         Cliente cliente = mapper.requestForEntity(clienteRequest);
-//        cliente.setToken(token);
         return mapper.entityForResponse(clienteRepository.save(cliente));
     }
 

@@ -4,15 +4,13 @@ import com.ciceropinheiro.conductor.Spring.config.security.SecurityUtil;
 import com.ciceropinheiro.conductor.Spring.dto.request.VendaRequest;
 import com.ciceropinheiro.conductor.Spring.dto.response.VendaResponse;
 import com.ciceropinheiro.conductor.Spring.mapper.VendaMapeamento;
-import com.ciceropinheiro.conductor.Spring.model.Cliente;
-import com.ciceropinheiro.conductor.Spring.model.Usuario;
+import com.ciceropinheiro.conductor.Spring.model.User;
 import com.ciceropinheiro.conductor.Spring.model.Venda;
 import com.ciceropinheiro.conductor.Spring.repository.VendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,7 +32,7 @@ public class VendaService {
 
 
     public List<Venda> recuperarVendas() {
-        Usuario usuario = SecurityUtil.getUsuario();
+        User usuario = SecurityUtil.getUsuario();
 
         if (usuario == null)
             return vendaRepository.findAll();

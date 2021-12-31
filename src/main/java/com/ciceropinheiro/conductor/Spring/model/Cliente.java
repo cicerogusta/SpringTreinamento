@@ -45,7 +45,7 @@ public class Cliente {
 //    private List<Venda> vendas;
 
     @OneToOne(mappedBy = "cliente")
-    private Usuario usuario;
+    private User usuario;
 
 
 
